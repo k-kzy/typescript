@@ -46,7 +46,6 @@ interface FuncB {
   (a: string): string;
 }
 let unionFunc: FuncA | FuncB;
-unionFunc();
 
 type NomadWorker = Engineer | Blogger;
 function describeProfile(nomadWorker: NomadWorker) {
@@ -129,6 +128,17 @@ let target = new AdvancedPerson();
 let source = new AdvancedCar();
 target = source;
 
-function advancedFunc(...args: [number, string, boolean, ...number[]]) {
+function advancedFn(...args: readonly number[]) {
 }
-advancedFunc(0, 'hi', true, 3, 3, 3, 3, 3)
+advancedFn(0, 1)
+
+// const アサーション
+let milk = 'milk' as const;
+let drink = milk;
+const array = [10, 20] as const;
+const peter = {
+  name: 'Peter',
+  age: 38
+} as const;
+
+type PeterType = typeof peter; // peter の型を代入できる
